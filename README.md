@@ -1,2 +1,3 @@
-# Painter
-Exercise started during my bootcamp. Allows you to paint, erase in a grid using keyboard controls (WIP).
+# Portfolio_STT
+
+Projects, exercises and code developed (before and after bootcamp)
