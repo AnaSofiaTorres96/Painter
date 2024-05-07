@@ -59,16 +59,31 @@ public class Grid {
     }
 
     public void paintOrEraseCell(int posVer, int posHor){
+        System.out.println("this is the paint erase method");
 
-        if(cellList[posVer][posHor].isFilled()){
-            //erase paint here
-            cellList[posVer][posHor].setColor(Color.WHITE);
-            cellList[posVer][posHor].fill();
-            cellList[posVer][posHor].setColor(Color.BLACK);
-            cellList[posVer][posHor].draw();
-
+        if(cellList[posHor][posVer].isFilled()){
+            System.out.println("paint erasing");
+            cellList[posHor][posVer].setColor(Color.WHITE);
+            cellList[posHor][posVer].fill();
+            cellList[posHor][posVer].setColor(Color.BLACK);
+            cellList[posHor][posVer].draw();
+            return;
 
         }
+        System.out.println("painting");
         cellList[posHor][posVer].fill();
+    }
+
+
+    public void clearBoard(){
+        for (int i = 0; i < cols; i++) {
+            for (int j = 0; j < rows; j++) {
+                cellList[i][j].setColor(Color.WHITE);
+                cellList[i][j].fill();
+                cellList[i][j].setColor(Color.BLACK);
+                cellList[i][j].draw();
+            }
+
+        }
     }
 }

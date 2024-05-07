@@ -62,6 +62,11 @@ public class Controls implements KeyboardHandler {
         pressedSpace.setKey(KeyboardEvent.KEY_SPACE);
         keyboard.addEventListener(pressedSpace);
 
+        KeyboardEvent pressedC = new KeyboardEvent();
+        pressedC.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        pressedC.setKey(KeyboardEvent.KEY_C);
+        keyboard.addEventListener(pressedC);
+
     }
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
@@ -96,6 +101,10 @@ public class Controls implements KeyboardHandler {
 
             case KeyboardEvent.KEY_SPACE:
                 controlsGrid.paintOrEraseCell(gridCursor.getPosVer(),gridCursor.getPosHor());
+                break;
+
+            case KeyboardEvent.KEY_C:
+                controlsGrid.clearBoard();
                 break;
         }
 
