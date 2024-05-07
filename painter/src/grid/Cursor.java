@@ -12,8 +12,10 @@ public class Cursor {
 
     private int posHor;
 
-    public Cursor (){
-        cursorRectangle = new Rectangle(10,10,15,15);
+    public Cursor (Grid cursorGrid){
+        this.cursorGrid = cursorGrid;
+        //need to pass grid as arg because without it I dont have access to grid cellsize  + padding will look for better solution
+        cursorRectangle = new Rectangle(cursorGrid.getPadding(),cursorGrid.getPadding(),cursorGrid.getCellSize(),cursorGrid.getCellSize());
         cursorRectangle.setColor(Color.BLUE);
         cursorRectangle.draw();
         cursorRectangle.fill();

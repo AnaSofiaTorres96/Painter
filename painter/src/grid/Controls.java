@@ -1,5 +1,6 @@
 package grid;
 
+import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
@@ -7,11 +8,13 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
 public class Controls implements KeyboardHandler {
 
-    Keyboard keyboard;
+    private Keyboard keyboard;
 
-    Grid controlsGrid;
+    private Grid controlsGrid;
 
-    Cursor gridCursor;
+    private Cursor gridCursor;
+
+    private Grid grid;
     public Controls(){
         init();
     }
@@ -32,11 +35,11 @@ public class Controls implements KeyboardHandler {
         this.gridCursor = gridCursor;
     }
 
-    public Grid grid;
+
 
     public void init(){
         keyboard = new Keyboard(this);
-
+        //MOVEMENT
         KeyboardEvent pressedW = new KeyboardEvent();
         pressedW.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
         pressedW.setKey(KeyboardEvent.KEY_W);
@@ -57,6 +60,8 @@ public class Controls implements KeyboardHandler {
         pressedA.setKey(KeyboardEvent.KEY_A);
         keyboard.addEventListener(pressedA);
 
+        //PAINTING/CLEAR
+
         KeyboardEvent pressedSpace = new KeyboardEvent();
         pressedSpace.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
         pressedSpace.setKey(KeyboardEvent.KEY_SPACE);
@@ -67,10 +72,35 @@ public class Controls implements KeyboardHandler {
         pressedC.setKey(KeyboardEvent.KEY_C);
         keyboard.addEventListener(pressedC);
 
+        //SAVING/LOADING
+
+        KeyboardEvent pressedV = new KeyboardEvent();
+        pressedV.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        pressedV.setKey(KeyboardEvent.KEY_V);
+        keyboard.addEventListener(pressedV);
+
+        KeyboardEvent pressedL = new KeyboardEvent();
+        pressedL.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        pressedL.setKey(KeyboardEvent.KEY_L);
+        keyboard.addEventListener(pressedL);
+
+        //COLOR CHANGES
+
+        KeyboardEvent pressedToChangeToBlack = new KeyboardEvent();
+        pressedToChangeToBlack.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        pressedToChangeToBlack.setKey(KeyboardEvent.KEY_0);
+        keyboard.addEventListener(pressedToChangeToBlack);
+
+        KeyboardEvent pressedToChangeToRed = new KeyboardEvent();
+        pressedToChangeToRed.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        pressedToChangeToRed.setKey(KeyboardEvent.KEY_1);
+        keyboard.addEventListener(pressedToChangeToRed);
+
     }
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
         switch(keyboardEvent.getKey()){
+            //MOVEMENT
             case KeyboardEvent.KEY_W :
                 if(gridCursor.getPosVer()==0){
                     break;
@@ -98,13 +128,30 @@ public class Controls implements KeyboardHandler {
                 }
                 gridCursor.moveLeft();
                 break;
-
+            //PAINTING/CLEAR
             case KeyboardEvent.KEY_SPACE:
                 controlsGrid.paintOrEraseCell(gridCursor.getPosVer(),gridCursor.getPosHor());
                 break;
 
             case KeyboardEvent.KEY_C:
                 controlsGrid.clearBoard();
+                break;
+
+            //SAVING/LOADING
+            case KeyboardEvent.KEY_V:
+                System.out.println("Saving drawing");
+                break;
+
+            case KeyboardEvent.KEY_L:
+                System.out.println("Loading drawing");
+                break;
+            //COLORS
+            case KeyboardEvent.KEY_0:
+                grid.setCurrentColor(Color.BLACK);
+                break;
+
+            case KeyboardEvent.KEY_1:
+                grid.setCurrentColor(Color.RED);
                 break;
         }
 

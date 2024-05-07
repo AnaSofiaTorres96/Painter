@@ -9,6 +9,8 @@ import java.util.Objects;
 
 
 public class Grid {
+
+    private Color currentColor;
     private int cols;
 
     private int rows;
@@ -19,17 +21,14 @@ public class Grid {
 
     private Rectangle[][] cellList;
 
-    public static final int cellSize = 15;
-
-    public int getCellSize() {
-        return this.cellSize;
-    }
+    private int cellSize;
 
 
-    public Grid(int cols, int rows) {
-
+    public Grid(int cols, int rows, int cellSize) {
+        this.currentColor = Color.BLACK;
         this.cols = cols;
         this.rows = rows;
+        this.cellSize = cellSize;
         cellList = new Rectangle[cols][rows];
         gridConstruction();
 
@@ -46,17 +45,6 @@ public class Grid {
 
         }
     }
-    public Rectangle[][] getCellList() {
-        return cellList;
-    }
-
-    public int getCols() {
-        return cols;
-    }
-
-    public int getRows() {
-        return rows;
-    }
 
     public void paintOrEraseCell(int posVer, int posHor){
         System.out.println("this is the paint erase method");
@@ -65,12 +53,13 @@ public class Grid {
             System.out.println("paint erasing");
             cellList[posHor][posVer].setColor(Color.WHITE);
             cellList[posHor][posVer].fill();
-            cellList[posHor][posVer].setColor(Color.BLACK);
+            cellList[posHor][posVer].setColor(currentColor);
             cellList[posHor][posVer].draw();
             return;
 
         }
         System.out.println("painting");
+        cellList[posHor][posVer].setColor(currentColor);
         cellList[posHor][posVer].fill();
     }
 
@@ -85,5 +74,19 @@ public class Grid {
             }
 
         }
+    }
+//GETTERS/SETTERS
+    public int getCellSize() {
+    return this.cellSize;
+    }
+    public void setCurrentColor(Color currentColor) {
+        this.currentColor = currentColor;
+    }
+    public Rectangle[][] getCellList() {
+        return cellList;
+    }
+
+    public int getPadding() {
+        return padding;
     }
 }
