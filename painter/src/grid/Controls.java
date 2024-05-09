@@ -14,7 +14,6 @@ public class Controls implements KeyboardHandler {
 
     private Cursor gridCursor;
 
-    private Grid grid;
     public Controls(){
         init();
     }
@@ -91,10 +90,20 @@ public class Controls implements KeyboardHandler {
         pressedToChangeToBlack.setKey(KeyboardEvent.KEY_0);
         keyboard.addEventListener(pressedToChangeToBlack);
 
-        KeyboardEvent pressedToChangeToRed = new KeyboardEvent();
-        pressedToChangeToRed.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-        pressedToChangeToRed.setKey(KeyboardEvent.KEY_1);
-        keyboard.addEventListener(pressedToChangeToRed);
+        KeyboardEvent pressedToChangeToDarkGray = new KeyboardEvent();
+        pressedToChangeToDarkGray.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        pressedToChangeToDarkGray.setKey(KeyboardEvent.KEY_1);
+        keyboard.addEventListener(pressedToChangeToDarkGray);
+
+        KeyboardEvent pressedToChangeToGray = new KeyboardEvent();
+        pressedToChangeToGray.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        pressedToChangeToGray.setKey(KeyboardEvent.KEY_2);
+        keyboard.addEventListener(pressedToChangeToGray);
+
+        KeyboardEvent pressedToChangeToLightGray = new KeyboardEvent();
+        pressedToChangeToLightGray.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        pressedToChangeToLightGray.setKey(KeyboardEvent.KEY_3);
+        keyboard.addEventListener(pressedToChangeToLightGray);
 
     }
     @Override
@@ -133,26 +142,36 @@ public class Controls implements KeyboardHandler {
                 controlsGrid.paintOrEraseCell(gridCursor.getPosVer(),gridCursor.getPosHor());
                 break;
 
-            case KeyboardEvent.KEY_C:
-                controlsGrid.clearBoard();
+           /* case KeyboardEvent.KEY_C:
+                controlsGrid.clearGrid();
                 break;
-
             //SAVING/LOADING
             case KeyboardEvent.KEY_V:
+                controlsGrid.saveDrawing();
                 System.out.println("Saving drawing");
                 break;
 
             case KeyboardEvent.KEY_L:
+                controlsGrid.loadDrawing();
                 System.out.println("Loading drawing");
                 break;
             //COLORS
             case KeyboardEvent.KEY_0:
-                grid.setCurrentColor(Color.BLACK);
+                controlsGrid.setCurrentColor(Color.BLACK);
                 break;
 
             case KeyboardEvent.KEY_1:
-                grid.setCurrentColor(Color.RED);
+                controlsGrid.setCurrentColor(Color.DARK_GRAY);
                 break;
+
+            case KeyboardEvent.KEY_2:
+                controlsGrid.setCurrentColor(Color.GRAY);
+                break;
+
+            case KeyboardEvent.KEY_3:
+                controlsGrid.setCurrentColor(Color.LIGHT_GRAY);
+
+            */
         }
 
     }
