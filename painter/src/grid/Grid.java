@@ -81,6 +81,29 @@ public class Grid {
         return serializedGrid;
 
     }
+    //this one can consider colors by relating color to a numbr
+    public int [][] convertGridToIntArr(Rectangle [][] grid){
+        int gridRows = grid.length;
+        int gridCols = grid[0].length;
+        int [][] serializedGrid = new int[gridRows][gridCols];
+
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[i].length; j++) {
+                if(grid[i][j].isFilled()){
+                    serializedGrid[i][j] = convertColorToInt(grid[i][j]);
+                }
+            }
+
+        }
+        return serializedGrid;
+
+    }
+
+    public int convertColorToInt (Rectangle rectangle){
+        switch (rectangle.getColor()){
+            case Color.BLACK:
+        }
+    }
 
     public void saveDrawing(){
         try{
