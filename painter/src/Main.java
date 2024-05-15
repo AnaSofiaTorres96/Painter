@@ -6,7 +6,7 @@ public class Main {
     public static void main(String[] args) {
 
         App app = new App();
-        app.init(30,30, 30);
+        app.init(30,30, 15);
 
 
     }

@@ -142,7 +142,7 @@ public class Controls implements KeyboardHandler {
                 controlsGrid.paintOrEraseCell(gridCursor.getPosVer(),gridCursor.getPosHor());
                 break;
 
-           /* case KeyboardEvent.KEY_C:
+           case KeyboardEvent.KEY_C:
                 controlsGrid.clearGrid();
                 break;
             //SAVING/LOADING
@@ -170,8 +170,7 @@ public class Controls implements KeyboardHandler {
 
             case KeyboardEvent.KEY_3:
                 controlsGrid.setCurrentColor(Color.LIGHT_GRAY);
-
-            */
+                break;
         }
 
     }

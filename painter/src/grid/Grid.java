@@ -63,7 +63,7 @@ public class Grid {
 
         }
     }
-
+// with bool array can't consider multiple colors
     public boolean [][] convertGridToBooleanArr(Rectangle [][] grid){
 
         int gridRows = grid.length;
@@ -90,7 +90,7 @@ public class Grid {
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[i].length; j++) {
                 if(grid[i][j].isFilled()){
-                    serializedGrid[i][j] = convertColorToInt(grid[i][j]);
+                    serializedGrid[i][j] = convertColorToInt(grid[i][j].getColor());
                 }
             }
 
@@ -99,18 +99,42 @@ public class Grid {
 
     }
 
-    public int convertColorToInt (Rectangle rectangle){
-        switch (rectangle.getColor()){
-            case Color.BLACK:
+    public int convertColorToInt (Color color){
+        //I want this to be a swtich case but can't find a non conveluted way not to
+        if(color == Color.BLACK){
+            return 1;
+        }else if(color == Color.DARK_GRAY){
+            return 2;
+        }else if (color == Color.GRAY){
+            return 3;
+        }else if(color == Color.LIGHT_GRAY){
+            return 4;
         }
+        return -1;
+    }
+
+    public Color convertIntToColor(int numbr){
+        switch(numbr){
+            case 1:
+                return Color.BLACK;
+            case 2:
+                return Color.DARK_GRAY;
+            case 3:
+                return Color.GRAY;
+
+            case 4:
+                return Color.LIGHT_GRAY;
+        }
+        //so I can tell if something's been wrongfully saved/loaded
+        return Color.RED;
     }
 
     public void saveDrawing(){
         try{
             ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("savedDrawing.dat"));
-            boolean [][] gridToBool = convertGridToBooleanArr(this.getCellList());
+            int [][] gridToIntArr = convertGridToIntArr(this.getCellList());
 
-            out.writeObject(gridToBool);
+            out.writeObject(gridToIntArr);
             out.close();
             System.out.println("Drawing saved.");
         }catch(Exception e){
@@ -125,18 +149,30 @@ public class Grid {
         try{
             FileInputStream fileIn = new FileInputStream("savedDrawing.dat");
             ObjectInputStream in = new ObjectInputStream(fileIn);
-            //how to make this return [][]
-            boolean [][] boolArr = in.readAllBytes();
+            //how to make this return int[][]
+            int [][] intArr = (int[][])in.readObject();
 
-
-            redrawGrid(boolArr);
+            redrawGridWColor(intArr);
             System.out.println("Drawing loaded.");
 
         } catch (IOException |ClassNotFoundException e){
             System.out.println("Error loading drawing: " + e.getMessage());
         }
     }
+    public void redrawGridWColor(int [][]intArr){
+        for (int i = 0; i < this.cellList.length; i++) {
+            for (int j = 0; j < this.cellList[i].length; j++) {
+                if(intArr[i][j] > 0){
+                    Color cellColor = convertIntToColor(intArr[i][j]);
+                    this.cellList[i][j].setColor(cellColor);
+                    this.cellList[i][j].fill();
+                }
+            }
 
+        }
+    }
+
+//this one doesn't consider color
     public void redrawGrid(boolean[][] boolArr){
        //recieve bool[][] redraw grid
         for (int i = 0; i < this.cellList.length; i++) {
