@@ -81,53 +81,7 @@ public class Grid {
         return serializedGrid;
 
     }
-    //this one can consider colors by relating color to a numbr
-    public int [][] convertGridToIntArr(Rectangle [][] grid){
-        int gridRows = grid.length;
-        int gridCols = grid[0].length;
-        int [][] serializedGrid = new int[gridRows][gridCols];
 
-        for (int i = 0; i < grid.length; i++) {
-            for (int j = 0; j < grid[i].length; j++) {
-                if(grid[i][j].isFilled()){
-                    serializedGrid[i][j] = convertColorToInt(grid[i][j].getColor());
-                }
-            }
-
-        }
-        return serializedGrid;
-
-    }
-
-    public int convertColorToInt (Color color){
-        //I want this to be a swtich case but can't find a non conveluted way not to
-        if(color == Color.BLACK){
-            return 1;
-        }else if(color == Color.DARK_GRAY){
-            return 2;
-        }else if (color == Color.GRAY){
-            return 3;
-        }else if(color == Color.LIGHT_GRAY){
-            return 4;
-        }
-        return -1;
-    }
-
-    public Color convertIntToColor(int numbr){
-        switch(numbr){
-            case 1:
-                return Color.BLACK;
-            case 2:
-                return Color.DARK_GRAY;
-            case 3:
-                return Color.GRAY;
-
-            case 4:
-                return Color.LIGHT_GRAY;
-        }
-        //so I can tell if something's been wrongfully saved/loaded
-        return Color.RED;
-    }
 
     public void saveDrawing(){
         try{
@@ -159,6 +113,22 @@ public class Grid {
             System.out.println("Error loading drawing: " + e.getMessage());
         }
     }
+
+    //this one doesn't consider color
+    public void redrawGrid(boolean[][] boolArr){
+        //recieve bool[][] redraw grid
+        for (int i = 0; i < this.cellList.length; i++) {
+            for (int j = 0; j < this.cellList[i].length; j++) {
+                if(boolArr[i][j]){
+                    this.cellList[i][j].setColor(currentColor);
+                    this.cellList[i][j].fill();
+                }
+            }
+
+        }
+    }
+
+
     public void redrawGridWColor(int [][]intArr){
         for (int i = 0; i < this.cellList.length; i++) {
             for (int j = 0; j < this.cellList[i].length; j++) {
@@ -172,18 +142,53 @@ public class Grid {
         }
     }
 
-//this one doesn't consider color
-    public void redrawGrid(boolean[][] boolArr){
-       //recieve bool[][] redraw grid
-        for (int i = 0; i < this.cellList.length; i++) {
-            for (int j = 0; j < this.cellList[i].length; j++) {
-                if(boolArr[i][j]){
-                    this.cellList[i][j].setColor(currentColor);
-                    this.cellList[i][j].fill();
+    //this one can consider colors by relating color to a numbr
+    public int [][] convertGridToIntArr(Rectangle [][] grid){
+        int gridRows = grid.length;
+        int gridCols = grid[0].length;
+        int [][] serializedGrid = new int[gridRows][gridCols];
+
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[i].length; j++) {
+                if(grid[i][j].isFilled()){
+                    serializedGrid[i][j] = convertColorToInt(grid[i][j].getColor());
                 }
             }
 
         }
+        return serializedGrid;
+
+    }
+
+    public int convertColorToInt (Color color){
+        //I want this to be a swtich case but can't find a non conveluted way not to
+        if(color == Color.BLACK){
+            return 1;
+        }else if(color == Color.DARK_GRAY){
+            return 2;
+        }else if (color == Color.GRAY){
+            return 3;
+        }else if(color == Color.LIGHT_GRAY){
+            return 4;
+        }else{
+        return -1;
+        }
+    }
+
+    public Color convertIntToColor(int numbr){
+        switch(numbr){
+            case 1:
+                return Color.BLACK;
+            case 2:
+                return Color.DARK_GRAY;
+            case 3:
+                return Color.GRAY;
+
+            case 4:
+                return Color.LIGHT_GRAY;
+        }
+        //so I can tell if something's been wrongfully saved/loaded
+        return Color.RED;
     }
 
 //GETTERS/SETTERS
