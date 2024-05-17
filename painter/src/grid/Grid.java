@@ -103,7 +103,7 @@ public class Grid {
         try{
             FileInputStream fileIn = new FileInputStream("savedDrawing.dat");
             ObjectInputStream in = new ObjectInputStream(fileIn);
-            //how to make this return int[][]
+
             int [][] intArr = (int[][])in.readObject();
 
             redrawGridWColor(intArr);

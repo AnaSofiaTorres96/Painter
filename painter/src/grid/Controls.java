@@ -105,6 +105,11 @@ public class Controls implements KeyboardHandler {
         pressedToChangeToLightGray.setKey(KeyboardEvent.KEY_3);
         keyboard.addEventListener(pressedToChangeToLightGray);
 
+        KeyboardEvent pressedQuit = new KeyboardEvent();
+        pressedQuit.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        pressedQuit.setKey(KeyboardEvent.KEY_Z);
+        keyboard.addEventListener(pressedQuit);
+
     }
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
@@ -142,10 +147,10 @@ public class Controls implements KeyboardHandler {
                 controlsGrid.paintOrEraseCell(gridCursor.getPosVer(),gridCursor.getPosHor());
                 break;
 
-           case KeyboardEvent.KEY_C:
+            case KeyboardEvent.KEY_C:
                 controlsGrid.clearGrid();
                 break;
-            //SAVING/LOADING
+            //SAVING/LOADING/QUIT
             case KeyboardEvent.KEY_V:
                 controlsGrid.saveDrawing();
                 System.out.println("Saving drawing");
@@ -155,6 +160,9 @@ public class Controls implements KeyboardHandler {
                 controlsGrid.loadDrawing();
                 System.out.println("Loading drawing");
                 break;
+            case KeyboardEvent.KEY_Z:
+                    System.exit(0);
+                    break;
             //COLORS
             case KeyboardEvent.KEY_0:
                 controlsGrid.setCurrentColor(Color.BLACK);

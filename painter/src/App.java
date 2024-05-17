@@ -16,6 +16,7 @@ public class App {
 
         controls.setControlsGrid(grid);
         controls.setGridCursor(cursor);
+        cursor.init();
 
     }
 }
