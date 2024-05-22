@@ -45,9 +45,7 @@ public class Cursor {
 
     public void init(){
         while (true) {
-            System.out.println("while");
             try {
-                System.out.println("trycatch");
                 Thread.sleep(1000);
                 cursorBlinking();
             } catch (InterruptedException e) {
@@ -58,13 +56,13 @@ public class Cursor {
 
     public void cursorBlinking(){
         if(cursorRectangle.getColor() == Color.BLUE){
-            System.out.println("if");
+
             cursorRectangle.setColor(Color.RED);
             cursorRectangle.draw();
             cursorRectangle.fill();
             return;
         }
-        System.out.println("else");
+
         cursorRectangle.setColor(Color.BLUE);
         cursorRectangle.draw();
         cursorRectangle.fill();

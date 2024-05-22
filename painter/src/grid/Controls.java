@@ -179,6 +179,10 @@ public class Controls implements KeyboardHandler {
             case KeyboardEvent.KEY_3:
                 controlsGrid.setCurrentColor(Color.LIGHT_GRAY);
                 break;
+
+            default:
+                System.out.println("something went wrong");
+                break;
         }
 
     }
