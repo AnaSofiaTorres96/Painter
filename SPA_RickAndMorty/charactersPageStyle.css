@@ -1,0 +1,68 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    border: solid red 1px;
+}
+
+#charactersHeaderDiv{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    height: 25vh;
+    overflow: hidden;
+    position: relative;
+}
+
+#charactersHeaderImg{
+    position: absolute;
+    width: 100vw;
+}
+#charactersDiv{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+}
+#pagerDiv{
+    padding: 1em;
+    width: 100vw;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+#searchForm{
+    padding: 1em;
+}
+.singCharacterCard{
+    width: calc(100% / 2); /* Each div takes up to 20% of the container width */
+    box-sizing: border-box;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+.pagerButton{
+    border: none;
+    width:2em;
+    height:2em;
+    border-radius: 50%;
+    background-color: rgb(16, 131, 29);
+    font-size: 1.5em;
+    color:beige;
+}
+
+.pagerButton:hover{
+    background-color: rgb(27, 210, 49);
+    animation: grow 1s ;
+}
+
+@keyframes grow {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.2);
+    }
+}
