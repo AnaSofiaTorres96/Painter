@@ -2,7 +2,7 @@
 
 Description:
 
-Master Coders Invasion is a Java game inspired by the classic Space Invaders, infused with the theme of a programming bootcamp. Developed using the SimpleGraphics library, this game offers an entertaining way to take a break from coding and unleash your frustration in a fun and legal manner.
+Bug Evaders is a Java game inspired by the classic Space Invaders, infused with the theme of a programming bootcamp. Developed using the SimpleGraphics library, this game offers an entertaining way to take a break from coding and unleash your frustration in a fun and legal manner.
 
 Are you tired of being buried under Oracle documentation? Do you crave a way to vent your frustration without repercussions? Look no further than Master Coders Invasion!
 
